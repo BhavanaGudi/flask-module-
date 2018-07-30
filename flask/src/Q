@@ -1,0 +1,15 @@
+from flask import Flask,request,render_template
+from elasticsearch import Elasticsearch
+
+app = Flask(__name__)
+es = Elasticsearch
+
+@app.route('/hello',methods=["GET","POST"])
+def hello():
+	if request.method=='POST':
+		p = json.dumps(request.json)
+		print p
+		return "Hello World!"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0',port=5000,debug=True)
